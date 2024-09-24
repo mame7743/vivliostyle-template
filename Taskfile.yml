@@ -1,0 +1,21 @@
+version: '3'
+
+vars:
+  CONTAINER_NAME: vivliostyle
+
+tasks:
+  hello:
+    cmds:
+      - echo 'Hello World from Task!'
+    silent: true
+  init:
+    cmds:
+      - docker build --tag {{.CONTAINER_NAME}} ./docker/vivliostyle
+    silent: true
+    desc: 'Run MySQL container.'
+  build:
+    cmds:
+      - docker run --rm -v $(pwd)/book:/app {{.CONTAINER_NAME}} yarn
+      - docker run --rm -v $(pwd)/book:/app {{.CONTAINER_NAME}} npm run build --yes
+    silent: true
+    desc: 'Run MySQL container.'

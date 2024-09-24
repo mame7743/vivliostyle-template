@@ -1,0 +1,9 @@
+services:
+
+  vivliostyle:
+    build:
+      context: ./docker/vivliostyle
+      dockerfile: Dockerfile
+    volumes:
+      - ./book:/app
+    command: ["vivliostyle", "build"]
